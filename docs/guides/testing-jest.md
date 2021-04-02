@@ -88,13 +88,13 @@ Especially if you test that your action triggers a change: Test for the previous
 it('should call the cache when data is available', () => {
     // precondition
     service.getData();
-    expect(cacheService.getChachedData).not.toHaveBeenCalled();
+    expect(cacheService.getCachedData).not.toHaveBeenCalled();
 
     << change cacheService mock to data available >>
 
     // test again
     service.getData();
-    expect(cacheService.getChachedData).toHaveBeenCalled();
+    expect(cacheService.getCachedData).toHaveBeenCalled();
 });
 ```
 

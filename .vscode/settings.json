@@ -21,5 +21,9 @@
 
   "ngschematics.schematics": ["intershop-schematics"],
   "workbench.iconTheme": "vscode-icons",
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "cSpell.dictionaryDefinitions": [
+    { "name": "intershop", "path": "${workspaceFolder}/.vscode/intershop.txt" }
+  ],
+  "cSpell.dictionaries": ["intershop"]
 }
