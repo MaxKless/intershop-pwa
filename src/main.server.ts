@@ -16,3 +16,4 @@ export { HYBRID_MAPPING_TABLE, ICM_WEB_URL } from './hybrid/default-url-mapping-
 
 export { renderModule, renderModuleFactory } from '@angular/platform-server';
 export { APP_BASE_HREF } from '@angular/common';
+export { DEPLOY_URL_SERVER } from 'ish-core/configurations/injection-keys';

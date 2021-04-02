@@ -1,6 +1,10 @@
 /* SystemJS module definition */
 declare var module: NodeModule;
 
+declare module 'express-http-proxy';
+
+declare module 'express-robots-txt';
+
 interface NodeModule {
   id: string;
 }

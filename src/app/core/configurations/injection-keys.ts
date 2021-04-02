@@ -11,6 +11,13 @@ import { environment } from '../../../environments/environment';
 export const API_MOCK_PATHS = new InjectionToken<string[]>('apiMockPaths', { factory: () => environment.apiMockPaths });
 
 /**
+ * dynamic deployment url which should be used to prefix all static assets
+ *
+ * It is properly provided with an ending slash
+ */
+export const DEPLOY_URL_SERVER = new InjectionToken<string>('deployUrl');
+
+/**
  * If 'username' login name is used for registration, if 'email' the email is used as login name (default: 'email')
  */
 export const USER_REGISTRATION_LOGIN_TYPE = new InjectionToken<string>('userRegistrationLoginType', {

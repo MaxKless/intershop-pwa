@@ -3,7 +3,6 @@ import { NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 
 import { IconModule } from './icon.module';
-import { ThemeService } from './utils/theme/theme.service';
 
 @NgModule({
   imports: [
@@ -17,11 +16,9 @@ import { ThemeService } from './utils/theme/theme.service';
   ],
 })
 export class AppearanceModule {
-  constructor(popoverConfig: NgbPopoverConfig, themeService: ThemeService) {
+  constructor(popoverConfig: NgbPopoverConfig) {
     popoverConfig.placement = 'top';
     popoverConfig.triggers = 'hover';
     popoverConfig.container = 'body';
-
-    themeService.init();
   }
 }

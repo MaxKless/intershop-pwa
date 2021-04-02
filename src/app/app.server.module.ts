@@ -1,5 +1,5 @@
 import { HTTP_INTERCEPTORS, HttpErrorResponse } from '@angular/common/http';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, Inject, NgModule } from '@angular/core';
 import { TransferState } from '@angular/platform-browser';
 import { ServerModule, ServerTransferStateModule } from '@angular/platform-server';
 import { META_REDUCERS } from '@ngrx/store';
@@ -9,9 +9,11 @@ import { join } from 'path';
 import { Observable, Observer } from 'rxjs';
 
 import { configurationMeta } from 'ish-core/configurations/configuration.meta';
-import { COOKIE_CONSENT_VERSION, DISPLAY_VERSION } from 'ish-core/configurations/state-keys';
+import { DEPLOY_URL_SERVER } from 'ish-core/configurations/injection-keys';
+import { COOKIE_CONSENT_VERSION, DEPLOY_URL_CLIENT, DISPLAY_VERSION } from 'ish-core/configurations/state-keys';
 import { UniversalLogInterceptor } from 'ish-core/interceptors/universal-log.interceptor';
 import { UniversalMockInterceptor } from 'ish-core/interceptors/universal-mock.interceptor';
+import { ThemeService } from 'ish-core/utils/theme/theme.service';
 
 import { environment } from '../environments/environment';
 
@@ -70,12 +72,15 @@ export class UniversalErrorHandler implements ErrorHandler {
     { provide: HTTP_INTERCEPTORS, useClass: UniversalLogInterceptor, multi: true },
     { provide: ErrorHandler, useClass: UniversalErrorHandler },
     { provide: META_REDUCERS, useValue: configurationMeta, multi: true },
+    ThemeService,
   ],
   bootstrap: [AppComponent],
 })
 export class AppServerModule {
-  constructor(transferState: TransferState) {
+  constructor(transferState: TransferState, @Inject(DEPLOY_URL_SERVER) deployUrl: string, themeService: ThemeService) {
     transferState.set(DISPLAY_VERSION, process.env.DISPLAY_VERSION);
     transferState.set(COOKIE_CONSENT_VERSION, process.env.COOKIE_CONSENT_VERSION || environment.cookieConsentVersion);
+    transferState.set(DEPLOY_URL_CLIENT, deployUrl);
+    themeService.init();
   }
 }
